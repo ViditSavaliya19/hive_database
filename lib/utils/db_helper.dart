@@ -12,15 +12,15 @@ class DbHelper {
 
 
   Future<void> addData() async {
+    ContactModel cm =ContactModel(name: "Ayush",model: "704663253");
+    await cbox.add(cm);
+
     GroupModel groupModel = GroupModel(
       name: "Friends",
       date: "25/05/2023",
-      contactList: [
-        ContactModel(name: "Ayush",model: "704663253"),
-        ContactModel(name: "Rashmi",model: "8855221144"),
-      ]
     );
     await box.add(groupModel);
+
   }
 
   void readData() {
