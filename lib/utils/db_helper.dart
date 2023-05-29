@@ -7,8 +7,8 @@ class DbHelper {
   static DbHelper dbhelper = DbHelper._();
   DbHelper._();
 
-  var box = Hive.box("group");
-  var cbox = Hive.box("contact");
+  var box = Hive.box<GroupModel>("group");
+  var cbox = Hive.box<ContactModel>("contact");
 
 
   Future<void> addData() async {
@@ -21,10 +21,21 @@ class DbHelper {
     );
     await box.add(groupModel);
 
+
+    groupModel.contactList= HiveList(cbox);
+    groupModel.contactList!.add(cm);
+    print(groupModel.contactList);
+
+  }
+
+  Future<void> addContactWithGroup(GroupModel gm,ContactModel cm ,index) async {
+
+    gm.contactList= HiveList(cbox);
+    gm.contactList!.add(cm);
+    await cbox.add(cm);
   }
 
   void readData() {
-
     GroupModel? groupModel = box.get('Friends');
     print(groupModel!.name);
     print(groupModel.date);

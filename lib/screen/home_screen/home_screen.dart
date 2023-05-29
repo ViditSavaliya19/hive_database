@@ -10,10 +10,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  TextEditingController txtName =TextEditingController();
+  TextEditingController txtContact =TextEditingController();
   @override
   void initState() {
     super.initState();
-    // DbHelper.dbhelper.initDB();
   }
 
   @override
@@ -29,6 +31,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     DbHelper.dbhelper.addData();
                   },
                   child: const Text("Add Data")),
+               TextField(
+                controller: txtName,
+                decoration: const InputDecoration(hintText: "Name"),
+              ),
+               TextField(
+                controller: txtContact,
+                decoration: const InputDecoration(hintText: "No"),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    // DbHelper.dbhelper.addContactWithGroup(gm, cm, index);
+                  },
+                  child: const Text("Add Contact")),
               ElevatedButton(
                   onPressed: () {
                     DbHelper.dbhelper.readData();
@@ -71,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           model: "774455663300", name: "www"),
                                       0);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
                                   color: Colors.red,
                                 ),
